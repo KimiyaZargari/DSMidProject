@@ -11,6 +11,11 @@ public class Node {
         this.next = null;
     }
 
+    public Node() {
+        data = null;
+        next = null;
+    }
+
     public Node addNext(String data) {
         if (next == null)
             next = new Node(data);
@@ -62,10 +67,15 @@ public class Node {
         return subNode;
     }
 
-    public boolean hastNext(){
-        return next!= null;
+    public boolean hastNext() {
+        return next != null;
     }
-    public boolean hasSub(){
-        return subNode!= null;
+
+    public boolean hasSub() {
+        return subNode != null;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }
