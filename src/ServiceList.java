@@ -23,11 +23,25 @@ public class ServiceList {
 
         Node temp = first;
         temp = findService(temp, service);
-        if (temp == null){
+        if (temp == null) {
             System.out.println("no such service found");
             return;
         }
         temp.addSub(subService);
+    }
+
+    public void show(Node from) {
+        while (from != null) {
+            System.out.print(from.getData());
+            if (from.hasSub()) {
+                System.out.print(" <");
+                show(from.getSubNode());
+                System.out.print(">");
+            }
+            if (from.hastNext())
+                System.out.print(" , ");
+            from = from.getNext();
+        }
     }
 
     private Node findService(Node from, String service) {
@@ -35,11 +49,18 @@ public class ServiceList {
             if (from.getData().equals(service)) {
                 return from;
             }
-            if (from.hasSub())
-                return findService(from.getSubNode(), service);
+            if (from.hasSub()) {
+                Node node = findService(from.getSubNode(), service);
+                if (node != null)
+                    return node;
+            }
             from = from.getNext();
         }
         return null;
     }
 
+    public Node getFirst() {
+        Node temp = first;
+        return temp;
+    }
 }
