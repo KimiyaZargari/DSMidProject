@@ -44,7 +44,7 @@ public class ServiceList {
         }
     }
 
-    private Node findService(Node from, String service) {
+    public Node findService(Node from, String service) {
         while (from != null) {
             if (from.getData().equals(service)) {
                 return from;
