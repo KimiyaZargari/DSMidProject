@@ -10,6 +10,11 @@ public class ServiceList {
         last = null;
     }
 
+    /**
+     * creates a node and adds it to the end of list
+     * @param service name of the service
+     * @return true if successfully created; false if the service already exists
+     */
     public boolean addService(String service) {
         Node temp = first;
         if (first == null) {
@@ -21,6 +26,12 @@ public class ServiceList {
             return false;
         return true;
     }
+
+    /**
+     * deletes node from list
+     * @param name name of the node that wants to be deleted
+     * @return true if successfully deleted and false if node with such name does not exist
+     */
 
     public boolean delete(String name) {
         Node temp = first;
@@ -38,6 +49,12 @@ public class ServiceList {
         return  false;
     }
 
+    /**
+     * creates a node and adds it as a sub service to a service
+     * @param service name of the service node
+     * @param subService name of the sub service node that should be created
+     * @return true if successfully created and false if sub service already exists or service not found,
+     */
     public boolean addSubService(String service, String subService) {
 
         Node temp = first;
@@ -54,6 +71,10 @@ public class ServiceList {
         return false;
     }
 
+    /**
+     * prints full service list recursively
+     * @param from the head of the list
+     */
     public void show(Node from) {
         while (from != null) {
             System.out.print(from.getData());
@@ -68,6 +89,12 @@ public class ServiceList {
         }
     }
 
+    /**
+     * searches list to find a node by having its name and returns it recursively
+     * @param from head of the list  or sublist
+     * @param service name of the node
+     * @return the node with given name
+     */
     public Node findService(Node from, String service) {
         while (from != null) {
             if (from.getData().equals(service)) {
@@ -83,6 +110,9 @@ public class ServiceList {
         return null;
     }
 
+    /**
+     * @return a reference to the first node
+     */
     public Node getFirst() {
         Node temp = first;
         return temp;

@@ -17,6 +17,11 @@ public class Node {
         next = null;
     }
 
+    /**
+     * creates a node with the given data and sets it as the next node
+     * @param data data of the next node
+     * @return next node
+     */
     public Node addNext(String data) {
         if (next == null)
             next = new Node(data);
@@ -29,6 +34,10 @@ public class Node {
         return next;
     }
 
+    /**
+     * creates a node and adds it as a sub node
+     * @param data data of the sub node
+     */
     public void addSub(String data) {
         if (subNode == null) {
             subNode = new Node(data);
@@ -40,16 +49,6 @@ public class Node {
 
 
         }
-    }
-
-    public boolean delete(Node prevNode) {
-        try {
-            prevNode.next = next;
-            return true;
-        } catch (NullPointerException e) {
-            return false;
-        }
-
     }
 
     public int getNumOfAgenciesUsing() {

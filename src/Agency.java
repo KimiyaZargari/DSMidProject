@@ -20,11 +20,18 @@ public class Agency {
 
     }
 
+    /**
+     * adds next agency
+     * @param name name of the agency
+     * @return aGEncY instance
+     */
     public Agency addNext(String name){
         return next = new Agency(name);
     }
 
-
+    /**
+     * lists all services offered by the agency
+     */
     public void showServices() {
         System.out.println("service(s) of " + name + " agency ");
         for (int i = 0; i < services.size(); i ++){
@@ -33,7 +40,10 @@ public class Agency {
         System.out.println();
     }
 
-
+    /**
+     * adds a service to the agency's offered services
+     * @param name name of the service
+     */
     public void addService(String name) {
         services.add(serviceList.findService(serviceList.getFirst(), name));
     }
