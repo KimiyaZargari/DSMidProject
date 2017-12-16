@@ -45,7 +45,33 @@ public class Agency {
      * @param name name of the service
      */
     public void addService(String name) {
-        services.add(serviceList.findService(serviceList.getFirst(), name));
+        Node service = serviceList.findService(serviceList.getFirst(), name);
+        if(service == null){
+            System.out.println("service not found");
+            return;
+        }
+        services.add(service);
+        service.setNumOfAgenciesUsing(service.getNumOfAgenciesUsing() + 1);
+    }
+
+    /**
+     * deletes service from the offered services by the agency
+     * if this agency is the only one offering the service, the service will be removed from the service list.
+     * @param name
+     */
+    public void deleteService(String name){
+        for (int i = 0; i < services.size(); i ++){
+           if (services.get(i).getData().equals(name)){
+               if (services.get(i).getNumOfAgenciesUsing() == 1){
+                   serviceList.delete(services.get(i).getData());
+               }
+               services.remove(i);
+               return;
+
+           }
+        }
+        System.out.println(name + " is not offered by " + this.name + " agency");
+
     }
 
 

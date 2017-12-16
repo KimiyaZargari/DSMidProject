@@ -51,6 +51,15 @@ public class Agencies {
         agency.addService(service);
     }
 
+    public void deleteServiceFromAgency(String service, String agency){
+        Agency agencyNode = findAgency(agency);
+        if(agencyNode == null){
+            System.out.println("agency does not exist");
+            return;
+        }
+        agencyNode.deleteService(service);
+    }
+
     /**
      * finds an agency by name
      * @param name name of the agency
