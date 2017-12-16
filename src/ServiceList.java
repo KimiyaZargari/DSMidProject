@@ -10,24 +10,32 @@ public class ServiceList {
         last = null;
     }
 
-    public void addService(String service) {
+    public boolean addService(String service) {
+        Node temp = first;
         if (first == null) {
             first = new Node(service);
             last = first;
-        } else {
+        } else if (findService(temp, service) == null) {
             last = last.addNext(service);
-        }
+        } else
+            return false;
+        return true;
     }
 
-    public void addSubService(String service, String subService) {
+    public boolean addSubService(String service, String subService) {
 
         Node temp = first;
-        temp = findService(temp, service);
+        Node serviceNode = findService(temp, service);
         if (temp == null) {
             System.out.println("no such service found");
-            return;
+            return false;
         }
-        temp.addSub(subService);
+        temp = first;
+        if (findService(temp, subService) == null) {
+            serviceNode.addSub(subService);
+            return true;
+        }
+        return false;
     }
 
     public void show(Node from) {
