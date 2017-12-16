@@ -33,6 +33,9 @@ public class Agency {
      * lists all services offered by the agency
      */
     public void showServices() {
+        if(services.isEmpty()){
+            System.out.println(name + " agency does not offer any services!");
+        }
         System.out.println("service(s) of " + name + " agency ");
         for (int i = 0; i < services.size(); i ++){
             System.out.print( services.get(i).getData() + "  ");

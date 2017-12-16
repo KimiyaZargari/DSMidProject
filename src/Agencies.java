@@ -54,7 +54,7 @@ public class Agencies {
     public void deleteServiceFromAgency(String service, String agency){
         Agency agencyNode = findAgency(agency);
         if(agencyNode == null){
-            System.out.println("agency does not exist");
+            System.out.println(agency + " agency does not exist");
             return;
         }
         agencyNode.deleteService(service);

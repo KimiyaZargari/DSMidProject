@@ -76,6 +76,10 @@ public class ServiceList {
      * @param from the head of the list
      */
     public void show(Node from) {
+        if (first == null) {
+            System.out.println("the service list is empty");
+            return;
+        }
         while (from != null) {
             System.out.print(from.getData());
             if (from.hasSub()) {
