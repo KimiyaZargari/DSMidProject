@@ -22,6 +22,22 @@ public class ServiceList {
         return true;
     }
 
+    public boolean delete(String name) {
+        Node temp = first;
+        Node next = temp.getNext();
+        if (temp.getData().equals(name)) {
+            first = next;
+            return true;
+        }
+        while (next != null) {
+            if(next.getData().equals(name)){
+                temp.setNext(next.getNext());
+                return true;
+            }
+        }
+        return  false;
+    }
+
     public boolean addSubService(String service, String subService) {
 
         Node temp = first;
@@ -71,4 +87,5 @@ public class ServiceList {
         Node temp = first;
         return temp;
     }
+
 }

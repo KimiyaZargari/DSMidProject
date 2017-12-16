@@ -5,6 +5,7 @@ public class Node {
     private String data;
     private Node next;
     private Node subNode;
+    private int numOfAgenciesUsing;
 
     public Node(String data) {
         this.data = data;
@@ -51,7 +52,15 @@ public class Node {
 
     }
 
-    private void setNext(Node next) {
+    public int getNumOfAgenciesUsing() {
+        return numOfAgenciesUsing;
+    }
+
+    public void setNumOfAgenciesUsing(int numOfAgenciesUsing) {
+        this.numOfAgenciesUsing = numOfAgenciesUsing;
+    }
+
+    public void setNext(Node next) {
         this.next = next;
     }
 
