@@ -7,7 +7,7 @@ import java.util.List;
 public class Agency {
     private String name;
     private static ServiceList serviceList;
-    private List<Node> services;
+    private List<Service> services;
     private Agency next;
 
     public Agency(String name) {
@@ -49,7 +49,7 @@ public class Agency {
      * @param name name of the service
      */
     public void addService(String name) {
-        Node service = serviceList.findService(serviceList.getFirst(), name);
+        Service service = serviceList.findService(serviceList.getFirst(), name);
         if(service == null){
             System.out.println("service not found");
             return;

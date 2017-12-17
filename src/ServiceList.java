@@ -2,8 +2,8 @@
  * Created by Kimiya :) on 15/12/2017.
  */
 public class ServiceList {
-    private Node first;
-    private Node last;
+    private Service first;
+    private Service last;
 
     public ServiceList() {
         first = null;
@@ -16,9 +16,9 @@ public class ServiceList {
      * @return true if successfully created; false if the service already exists
      */
     public boolean addService(String service) {
-        Node temp = first;
+        Service temp = first;
         if (first == null) {
-            first = new Node(service);
+            first = new Service(service);
             last = first;
         } else if (findService(temp, service) == null) {
             last = last.addNext(service);
@@ -34,8 +34,8 @@ public class ServiceList {
      */
 
     public boolean delete(String name) {
-        Node temp = first;
-        Node next = temp.getNext();
+        Service temp = first;
+        Service next = temp.getNext();
         if (temp.getData().equals(name)) {
             first = next;
             return true;
@@ -57,15 +57,15 @@ public class ServiceList {
      */
     public boolean addSubService(String service, String subService) {
 
-        Node temp = first;
-        Node serviceNode = findService(temp, service);
+        Service temp = first;
+        Service serviceService = findService(temp, service);
         if (temp == null) {
             System.out.println("no such service found");
             return false;
         }
         temp = first;
         if (findService(temp, subService) == null) {
-            serviceNode.addSub(subService);
+            serviceService.addSub(subService);
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ public class ServiceList {
      * prints full service list recursively
      * @param from the head of the list
      */
-    public void show(Node from) {
+    public void show(Service from) {
         if (first == null) {
             System.out.println("the service list is empty");
             return;
@@ -84,7 +84,7 @@ public class ServiceList {
             System.out.print(from.getData());
             if (from.hasSub()) {
                 System.out.print(" <");
-                show(from.getSubNode());
+                show(from.getSubService());
                 System.out.print(">");
             }
             if (from.hastNext())
@@ -99,13 +99,13 @@ public class ServiceList {
      * @param service name of the node
      * @return the node with given name
      */
-    public Node findService(Node from, String service) {
+    public Service findService(Service from, String service) {
         while (from != null) {
             if (from.getData().equals(service)) {
                 return from;
             }
             if (from.hasSub()) {
-                Node node = findService(from.getSubNode(), service);
+                Service node = findService(from.getSubService(), service);
                 if (node != null)
                     return node;
             }
@@ -117,8 +117,8 @@ public class ServiceList {
     /**
      * @return a reference to the first node
      */
-    public Node getFirst() {
-        Node temp = first;
+    public Service getFirst() {
+        Service temp = first;
         return temp;
     }
 

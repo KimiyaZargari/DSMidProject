@@ -1,18 +1,18 @@
 /**
  * Created by Kimiya :) on 15/12/2017.
  */
-public class Node {
+public class Service {
     private String data;
-    private Node next;
-    private Node subNode;
+    private Service next;
+    private Service subService;
     private int numOfAgenciesUsing;
 
-    public Node(String data) {
+    public Service(String data) {
         this.data = data;
         this.next = null;
     }
 
-    public Node() {
+    public Service() {
         data = null;
         next = null;
     }
@@ -22,13 +22,13 @@ public class Node {
      * @param data data of the next node
      * @return next node
      */
-    public Node addNext(String data) {
+    public Service addNext(String data) {
         if (next == null)
-            next = new Node(data);
+            next = new Service(data);
         else {
-            Node newNode = new Node(data);
-            newNode.setNext(next);
-            next = newNode;
+            Service newService = new Service(data);
+            newService.setNext(next);
+            next = newService;
 
         }
         return next;
@@ -39,13 +39,13 @@ public class Node {
      * @param data data of the sub node
      */
     public void addSub(String data) {
-        if (subNode == null) {
-            subNode = new Node(data);
+        if (subService == null) {
+            subService = new Service(data);
         } else {
-            Node temp = subNode;
+            Service temp = subService;
             while (temp.next != null)
                 temp = temp.next;
-            temp.next = new Node(data);
+            temp.next = new Service(data);
 
 
         }
@@ -59,7 +59,7 @@ public class Node {
         this.numOfAgenciesUsing = numOfAgenciesUsing;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Service next) {
         this.next = next;
     }
 
@@ -67,12 +67,12 @@ public class Node {
         return data;
     }
 
-    public Node getNext() {
+    public Service getNext() {
         return next;
     }
 
-    public Node getSubNode() {
-        return subNode;
+    public Service getSubService() {
+        return subService;
     }
 
     public boolean hastNext() {
@@ -80,7 +80,7 @@ public class Node {
     }
 
     public boolean hasSub() {
-        return subNode != null;
+        return subService != null;
     }
 
     public void setData(String data) {
