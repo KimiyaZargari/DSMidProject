@@ -59,13 +59,14 @@ public class ServiceList {
 
         Service temp = first;
         Service serviceService = findService(temp, service);
-        if (temp == null) {
+        if (serviceService == null) {
             System.out.println("no such service found");
             return false;
         }
         temp = first;
         if (findService(temp, subService) == null) {
             serviceService.addSub(subService);
+            System.out.println(subService+ " added to " + service);
             return true;
         }
         return false;

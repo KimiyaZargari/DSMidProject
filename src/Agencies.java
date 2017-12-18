@@ -4,65 +4,69 @@
 public class Agencies {
 
     private final Agency first;
-    private Agency  last;
+    private Agency last;
 
-    public Agencies(){
+    public Agencies() {
         first = new Agency();
         last = first;
     }
 
     /**
      * adds an agency to list
+     *
      * @param name
      */
-    public void add(String name){
+    public void add(String name) {
         if (first.getName() == null)
             first.setName(name);
-        else{
+        else {
             last = last.addNext(name);
 
         }
+        System.out.println(last.getName() + " agency added");
     }
 
     /**
      * lists all agencies
      */
-    public void show(){
+    public void show() {
         Agency temp = first;
         System.out.println("Agencies:");
-        while (temp != null){
+        while (temp != null) {
             System.out.println(temp.getName());
             temp = (Agency) temp.getNext();
         }
-        System.out.println( "=====================");
     }
 
     /**
      * adds a service to an agency to offer
+     *
      * @param agencyName name of the agency
-     * @param service name of the service
+     * @param service    name of the service
      */
-    public void addOffer(String agencyName, String service){
+    public void addOffer(String agencyName, String service) {
         Agency agency = findAgency(agencyName);
-        if (agency == null){
+        if (agency == null) {
             System.out.println("no such agency found");
             return;
         }
-        agency.addService(service);
+        if (agency.findService(service) == null)
+            agency.addService(service);
     }
 
-    public void deleteServiceFromAgency(String service, String agency){
+    public void deleteServiceFromAgency(String service, String agency) {
         Agency agencyNode = findAgency(agency);
-        if(agencyNode == null){
+        if (agencyNode == null) {
             System.out.println(agency + " agency does not exist");
             return;
         }
         agencyNode.deleteService(service);
+        System.out.println(service + " deleted from " + agency);
     }
 
-    public void listServicesOfAgency(String agency){
+    public void listServicesOfAgency(String agency) {
         Agency agencyNode = findAgency(agency);
-        if(agencyNode == null){
+        if (agencyNode == null) {
             System.out.println(agency + " agency does not exist");
             return;
         }
@@ -71,16 +75,17 @@ public class Agencies {
 
     /**
      * finds an agency by name
+     *
      * @param name name of the agency
      * @return instance of the agency
      */
-    public Agency findAgency(String name){
+    public Agency findAgency(String name) {
         Agency temp = first;
-        while (temp != null){
-            if( temp.getName().equals(name))
+        while (temp != null && temp.getName() != null) {
+            if (temp.getName().equals(name))
                 return temp;
-            temp = (Agency)temp.getNext();
+            temp = temp.getNext();
         }
-        return  null;
+        return null;
     }
 }

@@ -41,6 +41,14 @@ public class Order {
         return orderTime;
     }
 
+    public Agency getAgency() {
+        return agency;
+    }
+
+    public Service getService() {
+        return service;
+    }
+
     public String getCostumerName() {
         return costumerName;
     }

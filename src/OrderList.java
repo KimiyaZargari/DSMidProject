@@ -46,18 +46,14 @@ public class OrderList {
         orders[rear] = null;
         rear--;
         heapify(1);
-        // listOrders();
-        //System.out.println("===========");
         return order;
 
     }
 
     /**
-     * reorganizes a heap with a null head to become a max heap.
-     * this is done recursively. it places the child of the head with the higher priority and
-     * places it as head and sets that child to null then does the same with the sub heap until the heap becomes a max heap.
-     *
-     * @param head
+     * organizes a heap to become a maz heap by checking the parent with its children
+     * and changing  their places if necessary
+     * @param head head of the heap
      */
     private void heapify(int head) {
         int leftIndex = head * 2;
@@ -132,10 +128,11 @@ public class OrderList {
     }
 
     public void listOrders() {
-
+        if (isEmpty())
+            System.out.println("list is empty");
         for (int i = 1; i <= rear; i++) {
             try {
-                System.out.println(orders[i].getCostumerName());
+                System.out.println(" service" + orders[i].getService().getData() +   " by " + orders[i].getAgency().getName() + " from: " + orders[i].getCostumerName() );
             } catch (NullPointerException e) {
                 System.out.println("null");
             }
