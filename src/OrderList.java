@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.operations.Or;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +18,11 @@ public class OrderList {
     }
 
     /**
-     * adds an order to the order list while keeping the list as  max heap
+     * adds an order to the order list while keeping the list as a max heap
      *
      * @param order the added order
      */
-//TODO check
+
     public void addOrder(Order order) {
         orders[++rear] = order;
         int index = rear;
@@ -40,55 +42,89 @@ public class OrderList {
      */
     public Order popOrder() {
         Order order = orders[1];
-        orders[1] = null;
-        heapify(1);
-
+        orders[1] = orders[rear];
+        orders[rear] = null;
         rear--;
+        heapify(1);
+        // listOrders();
+        //System.out.println("===========");
         return order;
 
     }
 
-
+    /**
+     * reorganizes a heap with a null head to become a max heap.
+     * this is done recursively. it places the child of the head with the higher priority and
+     * places it as head and sets that child to null then does the same with the sub heap until the heap becomes a max heap.
+     *
+     * @param head
+     */
     private void heapify(int head) {
+        int leftIndex = head * 2;
+        int rightIndex = leftIndex + 1;
+        if (leftIndex > rear) {
+            return;
+        }
+        if (leftIndex == rear) {
+            if (orders[leftIndex].getImmediacyLevel() > orders[head].getImmediacyLevel()) {
+                swapOrders(leftIndex, head);
 
-        if (orders[head * 2] == null && orders[head * 2 + 1] == null) {
-            if (orders[head + 1] != null) {
-                orders[head] = orders[head + 1];
-                orders[head + 1] = null;
+            } else if (orders[leftIndex].getImmediacyLevel() == orders[head].getImmediacyLevel()) {
+                if (orders[leftIndex].getOrderTime() < orders[head].getOrderTime())
+                    swapOrders(leftIndex, head);
             }
             return;
         }
-        if (orders[head * 2] == null && orders[head * 2 + 1] != null) {
-            orders[head] = orders[head * 2 + 1];
-            orders[head * 2 + 1] = null;
+        if (orders[head].getImmediacyLevel() > orders[rightIndex].getImmediacyLevel() && orders[head].getImmediacyLevel() > orders[leftIndex].getImmediacyLevel())
             return;
-        }
+        else {
+            if (orders[head].getImmediacyLevel() < orders[rightIndex].getImmediacyLevel() || orders[head].getImmediacyLevel() < orders[leftIndex].getImmediacyLevel()) {
+                if (orders[leftIndex].getImmediacyLevel() > orders[rightIndex].getImmediacyLevel()) {
+                    swapOrders(head, leftIndex);
+                    heapify(leftIndex);
+                } else if (orders[leftIndex].getImmediacyLevel() < orders[rightIndex].getImmediacyLevel()) {
 
-        if (orders[head * 2 + 1] == null && orders[head * 2] != null) {
-            orders[head] = orders[head * 2];
-            orders[head * 2] = null;
-            return;
-        }
-        if (orders[head * 2].getImmediacyLevel() > orders[head * 2 + 1].getImmediacyLevel()) {
-            orders[head] = orders[head * 2];
-            orders[head * 2] = null;
-            heapify(head * 2);
-        } else if (orders[head * 2].getImmediacyLevel() < orders[head * 2 + 1].getImmediacyLevel()) {
-            orders[head] = orders[head * 2 + 1];
-            orders[head * 2 + 1] = null;
-            heapify(head * 2 + 1);
+                    swapOrders(head, rightIndex);
+                    heapify(rightIndex);
+                } else {
+                    if (orders[leftIndex].getOrderTime() < orders[rightIndex].getOrderTime()) {
+                        swapOrders(leftIndex, head);
+                        heapify(leftIndex);
+                    } else {
+                        swapOrders(rightIndex, head);
+                        heapify(rightIndex);
+                    }
+                }
 
-        } else {
-            if (orders[head * 2].getOrderTime() < orders[head * 2 + 1].getOrderTime()) {
-                orders[head] = orders[head * 2];
-                orders[head * 2] = null;
-                heapify(head * 2);
             } else {
-                orders[head] = orders[head * 2 + 1];
-                orders[head * 2 + 1] = null;
-                heapify(head * 2 + 1);
+                if (orders[head].getImmediacyLevel() > orders[leftIndex].getImmediacyLevel()) {
+                    if (orders[head].getOrderTime() > orders[rightIndex].getOrderTime()) {
+                        swapOrders(rightIndex, head);
+                        heapify(rightIndex);
+                    }
+                } else if (orders[head].getImmediacyLevel() > orders[rightIndex].getImmediacyLevel()) {
+                    if (orders[head].getOrderTime() > orders[leftIndex].getOrderTime()) {
+                        swapOrders(leftIndex, head);
+                        heapify(leftIndex);
+                    }
+                } else {
+                    if (orders[leftIndex].getOrderTime() > orders[rightIndex].getOrderTime()) {
+                        if (orders[head].getOrderTime() > orders[rightIndex].getOrderTime()) {
+                            swapOrders(rightIndex, head);
+                            heapify(rightIndex);
+                        }
+
+                    } else {
+                        if (orders[head].getOrderTime() > orders[leftIndex].getOrderTime()) {
+                            swapOrders(leftIndex, head);
+                            heapify(leftIndex);
+                        }
+                    }
+                }
             }
+
         }
+
     }
 
     public boolean isEmpty() {
@@ -96,12 +132,17 @@ public class OrderList {
     }
 
     public void listOrders() {
+
         for (int i = 1; i <= rear; i++) {
-
-
-            System.out.println(orders[i].getCostumerName());
+            try {
+                System.out.println(orders[i].getCostumerName());
+            } catch (NullPointerException e) {
+                System.out.println("null");
+            }
 
         }
+
+
     }
 
     private void swapOrders(int i1, int i2) {
