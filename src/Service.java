@@ -1,9 +1,14 @@
 /**
- * Created by Kimiya :) on 15/12/2017.
+ * A service offered by the company. has reference to the next service the company adds
+ * each service can have subservices.
  */
 public class Service {
     private String data;
     private Service next;
+    private String carModer;
+    private String costumerDes;
+    private String companyDes;
+    private double expense;
     private Service subService;
     private int numOfAgenciesUsing;
 
@@ -85,5 +90,37 @@ public class Service {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public double getExpense() {
+        return expense;
+    }
+
+    public void setExpense(double expense) {
+        this.expense = expense;
+    }
+
+    public String getCarModer() {
+        return carModer;
+    }
+
+    public void setCarModer(String carModer) {
+        this.carModer = carModer;
+    }
+
+    public String getCompanyDes() {
+        return companyDes;
+    }
+
+    public void setCompanyDes(String companyDes) {
+        this.companyDes = companyDes;
+    }
+
+    public String getCostumerDes() {
+        return costumerDes;
+    }
+
+    public void setCostumerDes(String costumerDes) {
+        this.costumerDes = costumerDes;
     }
 }

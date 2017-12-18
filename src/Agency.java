@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Kimiya :) on 15/12/2017.
+ *An agency with a list of offered services.
+ * has reference to the next Agency
  */
 public class Agency {
     private String name;

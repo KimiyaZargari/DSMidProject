@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Kimiya :) on 17/12/2017.
+ *list of all the current orders in queue. it is a priority queue implemented as a max heap
  */
 public class OrderList {
 

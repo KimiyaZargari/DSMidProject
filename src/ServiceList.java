@@ -1,5 +1,5 @@
 /**
- * Created by Kimiya :) on 15/12/2017.
+ * a list of all the services and sub services offered by the company
  */
 public class ServiceList {
     private Service first;

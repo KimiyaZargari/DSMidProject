@@ -1,5 +1,5 @@
 /**
- * Created by Kimiya :) on 17/12/2017.
+ * represents each order of a service by a costumer from an agency
  */
 public class Order {
     public enum ImmediacyLevel {IMMEDIATE, REQUIRED, NORMAL}

@@ -1,5 +1,5 @@
 /**
- * Created by Kimiya :) on 15/12/2017.
+ *Linked list of all agencies
  */
 public class Agencies {
 
